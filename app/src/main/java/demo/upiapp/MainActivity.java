@@ -108,28 +108,27 @@ public class MainActivity extends AppCompatActivity {
         String status = "";
         String response[] = str.split("&");
 
-        for(int i=0; i < response.length; i++){
-            String equalStr[] = response[i].split("");
-            if(equalStr.length >= 2){
-
-                if(equalStr[0].toLowerCase().equals("Status".toLowerCase())){
+        for (int i = 0; i < response.length; i++)
+        {
+            String equalStr[] = response[i].split("=");
+            if(equalStr.length >= 2)
+            {
+                if (equalStr[0].toLowerCase().equals("Status".toLowerCase()))
+                {
                     status = equalStr[1].toLowerCase();
-
                 }
             }
-            else{
+            else
+            {
                 payment_cancel = "Payment cancelled";
-
             }
-
-            if(status.equals("success")){
-                Toast.makeText(this, "Transaction Successfull", Toast.LENGTH_SHORT).show();
-            }else if("Payment Cancelled".equals(payment_cancel)){
-                Toast.makeText(this, "payment cancelled by user", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Transaction failed", Toast.LENGTH_SHORT).show();
-
-            }
+        }
+        if(status.equals("success")){
+            Toast.makeText(this, "Transaction Successfull", Toast.LENGTH_SHORT).show();
+        }else if("Payment cancelled".equals(payment_cancel)){
+            Toast.makeText(this, "payment cancelled by user", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Transaction failed", Toast.LENGTH_SHORT).show();
         }
     }
     public static boolean isInternetAvailabe(Context context){
